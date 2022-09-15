@@ -1,7 +1,7 @@
 <script>
-import Navbar from "./components/navbar.vue";
+import Navbar from "./components/Navbar.vue";
 import poto from './assets/nopal.jpg'
-import FormTweet from './components/formTweet.vue'
+import FormTweet from './components/FormTweet.vue'
 
 export default {
   components: {
