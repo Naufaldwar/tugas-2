@@ -44,8 +44,8 @@ export default {
 </script>
 
 <template>
-  <Navbar />
+  <Navbar :poto="user.photo"/>
   <FormTweet class="mt-8" />
   <h1 class="w-1/2 flex mx-auto my-4 text-xl text-slate-600">Feeds</h1>
-  <FeedCard :feeds="feeds" :key="feed"></FeedCard>
+  <FeedCard :feeds="feeds" :key="feeds"></FeedCard>
 </template>

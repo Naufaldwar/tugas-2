@@ -7,23 +7,26 @@
       <div class="grid grid-flow-col">
         <p class="font-medium text-sm text-slate-100 col-span-2">{{ nama }}</p>
         <p class="col-span-2 text-end text-sm">{{ nick }}</p>
-        <div class="row-span-2 border w-[40px] h-[40px] rounded-full ml-2 flex justify-center self-center">
-          <img
+        <div
+          class="row-span-2 border w-[40px] h-[40px] rounded-full ml-2 flex justify-center self-center"
+        >
+          <!-- <img
             :src="poto"
-            alt="avatar1"
+            alt="avatar"
             class="w-[30px] h-[30px] rounded-full self-center"
-          />
+          /> -->
+          <Avatar :isSmall="true"/>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import Avatar from '../components/Avatar.vue';
 export default {
-  inject: ["nama", "photo", "nick"],
-
-  data() {
-    return { poto: this.photo };
+  components: {
+    Avatar,
   },
+  inject: ["nama","photo", "nick"],
 };
 </script>
