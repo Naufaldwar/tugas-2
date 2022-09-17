@@ -10,6 +10,7 @@ export default {
     FormTweet,
     FeedCard,
   },
+  
   data() {
     return {
       user: {
@@ -19,33 +20,54 @@ export default {
       },
       feeds: [
         {
-          user: "dwi",
-          avatar:"",
+          id:1,
+          user: "Bayu Tri Nugroho",
           usernick: "@dwi",
-          tweet:"Géritole de maudite marde de saint-cimonaque de cul de purée de charrue de cossin de saint-ciboire de baptême de gériboire de viarge de mosus de tabarouette."
+          tweet:"Géritole de maudite marde de saint-cimonaque de cul de purée de charrue de cossin de saint-ciboire de baptême de gériboire de viarge de mosus de tabarouette.",
+          photo:"https://assets.promediateknologi.com/crop/0x0:0x0/x/photo/2022/07/12/3455922448.jpg"
         },
         {
-          user: "ari",
+          id:2,
+          user: "Dedi Mumz si imoet",
           usernick: "@ari",
-          tweet:"Sapristi de doux Jésus de cibouleau de colon de cochonnerie de sainte-viarge de purée de taboire de câlique de mosus de calvinouche d'étole."
+          tweet:"Sapristi de doux Jésus de cibouleau de colon de cochonnerie de sainte-viarge de purée de taboire de câlique de mosus de calvinouche d'étole.",
+          photo:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlbfBgZmo3yMzBOEtGyS6UqD1PxZsVgubLzg&usqp=CAU"
         },
+        
       ],
+        
+      
     };
+    
   },
 
   provide() {
     return {
       nama: this.user.nama,
-      photo: this.user.photo,
+      photos: this.user.photo,
       nick: this.user.nickname,
+      
     };
   },
+  methods:{
+    handleTweet(tweet){
+    
+    this.feeds.push({
+          photo: this.user.photo,
+          user: this.user.nama,
+          usernick: this.user.nickname,
+          tweet: tweet
+        })
+    console.log(tweet)
+  }}
+  
+
 };
 </script>
 
 <template>
   <Navbar :poto="user.photo"/>
-  <FormTweet class="mt-8" />
+  <FormTweet  class="mt-8 " @tweets="handleTweet"/>
   <h1 class="w-1/2 flex mx-auto my-4 text-xl text-slate-600">Feeds</h1>
-  <FeedCard :feeds="feeds" :key="feeds"></FeedCard>
+  <FeedCard :feeds="feeds"  :key="feeds" ></FeedCard>
 </template>

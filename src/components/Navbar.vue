@@ -27,6 +27,6 @@ export default {
   components: {
     Avatar,
   },
-  inject: ["nama","photo", "nick"],
+  inject: ["nama","photos", "nick"],
 };
 </script>
