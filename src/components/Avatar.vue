@@ -1,7 +1,7 @@
 <template>
   <div v-if="isSmall == true" class="flex">
     <img
-      :src="photos"
+      :src="photo"
       class="w-[30px] h-[30px] rounded-full self-center"
       alt=""
     />
