@@ -19,7 +19,6 @@
 
 <script>
 export default {
-  inject: ["photos"],
   props: {
     isSmall: Boolean,
     photo: String,

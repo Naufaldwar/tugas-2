@@ -15,7 +15,7 @@
             alt="avatar"
             class="w-[30px] h-[30px] rounded-full self-center"
           /> -->
-          <Avatar :isSmall="true"/>
+          <Avatar :photo="photos" :isSmall="true"/>
         </div>
       </div>
     </div>
