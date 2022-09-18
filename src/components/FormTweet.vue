@@ -1,14 +1,14 @@
 <template>
   <div class="flex justify-center">
     <div
-      class="w-1/2 items-center border border-slate-400 rounded-xl h-48 grid justify-center"
+      class="items-center border border-slate-400 rounded-xl pl-4 pr-4 h-48 grid justify-center"
     >
       <form @submit.prevent="pushTweet()" ref="form" class="grid">
         <textarea
           name=""
           v-model="tweet"
           id=""
-          cols="67"
+          cols="63"
           rows="3"
           placeholder="Wite Something"
           class="border border-slate-400 p-3 mt-5 rounded-md"
