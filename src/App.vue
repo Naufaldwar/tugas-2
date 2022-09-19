@@ -84,7 +84,6 @@ export default {
       nama: this.user.nama,
       photos: this.user.photo,
       nick: this.user.nickname,
-      feeds: this.feeds,
     };
   },
   methods: {
@@ -99,6 +98,7 @@ export default {
         retweet: 0,
         delete: true,
         reply: "false",
+        comments:[]
       });
       console.log(tweet);
     },
@@ -107,6 +107,20 @@ export default {
       this.feeds.splice(index, 1);
       console.log(this.feeds);
     },
+
+    handleComment(tweet,number){
+      console.log(number)
+      console.log(tweet)
+      this.feeds[number].comments.push({photo: this.user.photo,
+        user: this.user.nama,
+        usernick: this.user.nickname,
+        comment: tweet,
+        heart: "false",
+        like: 0,
+        retweet: 0,
+        delete: true,
+        reply: "false",})
+    }
   },
 };
 </script>
@@ -122,5 +136,5 @@ export default {
   </div>
 
   <h1 class="w-1/2 flex mx-auto my-4 text-xl text-slate-600">Feeds</h1>
-  <FeedCard @delete="handleDelete"></FeedCard>
+  <FeedCard @comment="handleComment" :feeds="this.feeds" @delete="handleDelete"></FeedCard>
 </template>

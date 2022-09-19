@@ -23,7 +23,7 @@
 import Button from "./Button.vue";
 export default {
   emits: ["tweets"],
-  props:{tweetpost:Array},
+  props : {number : Number},
   components: {
     Button,
   },
@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     pushTweet() {
-      this.$emit("tweets", this.tweet);
+      this.$emit("tweets", this.tweet ,this.number);
       this.$refs.form.reset()
       this.tweet=""
       

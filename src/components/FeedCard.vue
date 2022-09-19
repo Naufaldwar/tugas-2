@@ -88,7 +88,7 @@
           </div>
         </div>
       </div>
-      <div class=" p-4" @click="toggleReply(index)">
+      <div class="p-4" @click="toggleReply(index)">
         <button
           class="w-full h-8 bg-slate-100 flex justify-start text-xs mt-4 pl-2 text-slate-400 rounded-md"
           v-show="feed.reply"
@@ -96,11 +96,15 @@
           <span class="self-center">Reply</span>
         </button>
       </div>
-      <div v-show="feed.reply == false" class=" shadow-md rounded-md p-4">
-        <FormTweet class="" />
+      <div v-show="feed.reply == false" class="shadow-md rounded-md p-4">
+        <FormTweet @tweets="handleComment" :number="index" />
       </div>
-      <div v-for="(data) in feed.comments" :key="data">
-        <p>{{data.comment}}</p>
+      <div v-for="data in feed.comments" :key="data">
+        <div class="flex p-6">
+          <div><Avatar :photo="data.photo" :isSmall="true" /></div>
+          <p class="ml-4">{{ data.user }}</p>
+          <p class="text-green-600 hover:cursor-pointer text-sm ml-2">{{data.usernick}}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -110,8 +114,8 @@ import Avatar from "./Avatar.vue";
 import FormTweet from "./FormTweet.vue";
 export default {
   components: { Avatar, FormTweet },
-  emits: ["delete"],
-  inject: ["feeds"],
+  emits: ["delete", "comment"],
+  props: ["feeds"],
   methods: {
     toggle(index) {
       this.feeds[index].heart = !this.feeds[index].heart;
@@ -131,9 +135,11 @@ export default {
     },
 
     toggleReply(index) {
-      console.log(this.feeds[index].reply);
       this.feeds[index].reply = !this.feeds[index].reply;
-      console.log(this.feeds[index]);
+    },
+
+    handleComment(tweet, number) {
+      this.$emit("comment", tweet, number);
     },
   },
 };
