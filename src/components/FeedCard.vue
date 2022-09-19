@@ -88,15 +88,19 @@
           </div>
         </div>
       </div>
-      <div @click="toggleReply(index)">
+      <div class=" p-4" @click="toggleReply(index)">
         <button
-          class="w-full h-8 bg-slate-100 flex justify-start text-xs mt-4 pl-2 text-slate-400 rounded-md" v-show="feed.reply"
+          class="w-full h-8 bg-slate-100 flex justify-start text-xs mt-4 pl-2 text-slate-400 rounded-md"
+          v-show="feed.reply"
         >
           <span class="self-center">Reply</span>
         </button>
-        <div v-show="feed.reply==false">
-          <FormTweet class=""/>
-        </div>
+      </div>
+      <div v-show="feed.reply == false" class=" shadow-md rounded-md p-4">
+        <FormTweet class="" />
+      </div>
+      <div v-for="(data) in feed.comments" :key="data">
+        <p>{{data.comment}}</p>
       </div>
     </div>
   </div>
@@ -127,10 +131,9 @@ export default {
     },
 
     toggleReply(index) {
-      
       console.log(this.feeds[index].reply);
       this.feeds[index].reply = !this.feeds[index].reply;
-      console.log(this.feeds[index].reply);
+      console.log(this.feeds[index]);
     },
   },
 };

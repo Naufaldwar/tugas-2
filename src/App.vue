@@ -33,7 +33,21 @@ export default {
           heart: "false",
           like: 10,
           retweet: 50,
-          reply:"false"
+          reply: "false",
+          comments: [
+            {
+              user: "Dedi Mumz si imoet",
+              usernick: "@ari",
+              comment:
+                "Sapristi de doux Jésus de cibouleau de colon de cochonnerie de sainte-viarge de purée de taboire de câlique de mosus de calvinouche d'étole.",
+              photo:
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlbfBgZmo3yMzBOEtGyS6UqD1PxZsVgubLzg&usqp=CAU",
+              heart: "false",
+              like: 15,
+              retweet: 1220,
+              reply: "false",
+            },
+          ],
         },
         {
           user: "Dedi Mumz si imoet",
@@ -45,7 +59,21 @@ export default {
           heart: "false",
           like: 15,
           retweet: 1220,
-          reply:"false"
+          reply: "false",
+          comments: [
+            {
+              user: "Bayu Tri Nugroho",
+              usernick: "@dwi",
+              comment:
+                "Géritole de maudite marde de saint-cimonaque de cul de purée de charrue de cossin de saint-ciboire de baptême de gériboire de viarge de mosus de tabarouette.",
+              photo:
+                "https://assets.promediateknologi.com/crop/0x0:0x0/x/photo/2022/07/12/3455922448.jpg",
+              heart: "false",
+              like: 10,
+              retweet: 50,
+              reply: "false",
+            },
+          ],
         },
       ],
     };
@@ -68,24 +96,31 @@ export default {
         tweet: tweet,
         heart: "false",
         like: 0,
-        retweet:0,
-        delete:true,
-        reply:"false"
+        retweet: 0,
+        delete: true,
+        reply: "false",
       });
       console.log(tweet);
     },
 
-    handleDelete(index){
-      this.feeds.splice(index,1)
-      console.log(this.feeds)
-    }
+    handleDelete(index) {
+      this.feeds.splice(index, 1);
+      console.log(this.feeds);
+    },
   },
 };
 </script>
 
 <template>
   <Navbar :poto="user.photo" />
-  <FormTweet class="mt-8" @tweets="handleTweet" />
+  <div class="flex justify-center mt-8">
+    <div
+      class="w-1/2 border border-slate-400 rounded-xl h-48 flex justify-center p-4"
+    >
+      <FormTweet class="w-full" @tweets="handleTweet" />
+    </div>
+  </div>
+
   <h1 class="w-1/2 flex mx-auto my-4 text-xl text-slate-600">Feeds</h1>
   <FeedCard @delete="handleDelete"></FeedCard>
 </template>
