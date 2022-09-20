@@ -8,7 +8,7 @@
         <p class="font-medium text-sm text-slate-100 col-span-2">{{ nama }}</p>
         <p class="col-span-2 text-end text-sm">{{ nick }}</p>
         <div
-          class="row-span-2 border w-[40px] h-[40px] rounded-full ml-2 flex justify-center self-center"
+          class="row-span-2 ml-2 "
         >
           <!-- <img
             :src="poto"
@@ -22,11 +22,7 @@
   </div>
 </template>
 <script>
-import Avatar from '../components/Avatar.vue';
 export default {
-  components: {
-    Avatar,
-  },
   inject: ["nama","photos", "nick"],
 };
 </script>
