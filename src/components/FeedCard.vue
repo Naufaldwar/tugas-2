@@ -83,25 +83,27 @@
         </div>
       </div>
     </div>
+    <div @click="toggleReply" class="pt-2">
+      <button
+        class="w-full h-8 shadow-md bg-slate-100 flex justify-start text-xs mt-4 pl-2 text-slate-500 rounded-md"
+        v-show="feed.reply"
+      >
+        <span class="self-center">Reply</span>
+      </button>
+    </div>
 
-    <button
-      class="w-full h-8 shadow-md bg-slate-100 flex justify-start text-xs mt-4 pl-2 text-slate-500 rounded-md"
-      v-show="feed.reply"
-      @click="toggleReply"
-    >
-      <span class="self-center">Reply</span>
-    </button>
     <div
       v-show="feed.reply == false"
       class="bg-slate-100 rounded-lg p-4 mt-4 shadow-md w-full justify-self-center"
     >
-      <FormTweet @tweets="handleComment" :number="index" />
+      <FormTweet @tweets="handleComment" :number="this.index"/>
     </div>
     <div v-if="hasChildren" class="flex flex-col-reverse">
       <FeedCard
         v-for="(comment, index) in feed.comments"
         :feed="comment"
         :index="index"
+        @delete="handleDeleteComment(this.index,index)"
         :key="comment"
         class="px-4 py-2"
       />
@@ -111,7 +113,7 @@
 <script>
 export default {
   name: "FeedCard",
-  emits: ["delete", "comment" ,"deleteComment"],
+  emits: ["delete", "comment", "deleteComment"],
   props: { feed: Object, index: Number },
   computed: {
     hasChildren() {
@@ -134,7 +136,6 @@ export default {
     },
 
     deleteFeed(index) {
-      // console.log(index)
       this.$emit("delete", index);
     },
 
@@ -143,13 +144,13 @@ export default {
     },
 
     handleComment(tweet, number) {
-      console.log(number)
       this.$emit("comment", tweet, number);
     },
 
-    // handleDeleteComment(index){
-    //   console.log(index)
-    // }
+    handleDeleteComment(number,index) {
+      console.log(index);
+      this.$emit("deleteComment",number, index);
+    },
   },
 };
 </script>

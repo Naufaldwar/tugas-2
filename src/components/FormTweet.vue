@@ -10,7 +10,7 @@
           rows="3"
           placeholder="Wite Something"
           class="border border-slate-400 p-3 mt-5 rounded-md"
-          autofocus
+          ref="input"
         ></textarea>
         <div class=" grid grid-cols-2"><p>{{ tweet.length }}/10</p> <Button
           class="justify-self-end mb-4 mt-4 disabled:cursor-no-drop"
@@ -37,6 +37,9 @@ export default {
       length: 0,
     };
   },
+  mounted()
+    {this.$refs.input.focus()}
+  ,
   computed: {
     countLength() {
       return this.tweet.length;

@@ -89,8 +89,12 @@ export default {
     },
 
     handleDelete(index) {
-      console.log(index);
+      console.log(index)
       this.feeds.splice(index, 1);
+    },
+    handleDeleteComment(number,index) {
+      console.log(this.feeds[index])
+      this.feeds[number].comments.splice(index, 1);
     },
 
     handleComment(tweet, number) {
@@ -128,6 +132,7 @@ export default {
       :feed="feed"
       :index="index"
       @delete="handleDelete"
+      @deleteComment="handleDeleteComment"
       class="my-4"
     ></FeedCard>
   </div>
