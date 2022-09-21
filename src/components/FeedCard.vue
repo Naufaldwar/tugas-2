@@ -143,6 +143,7 @@ export default {
     },
 
     handleComment(tweet, number) {
+      console.log(number)
       this.$emit("comment", tweet, number);
     },
 
