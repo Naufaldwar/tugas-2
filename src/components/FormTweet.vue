@@ -1,28 +1,26 @@
 <template>
   <div class="flex justify-center">
-    <div
-      class="w-1/2 items-center border border-slate-400 rounded-xl h-48 grid justify-center"
-    >
-      <form @submit.prevent="pushTweet()" ref="form" class="grid">
+    
+      <form @submit.prevent="pushTweet()" ref="form" class="grid w-full">
         <textarea
           name=""
           v-model="tweet"
           id=""
-          cols="67"
+          
           rows="3"
           placeholder="Wite Something"
           class="border border-slate-400 p-3 mt-5 rounded-md"
           autofocus
         ></textarea>
         <div class=" grid grid-cols-2"><p>{{ tweet.length }}/10</p> <Button
-          class="justify-self-end mb-8 mt-4 disabled:cursor-no-drop"
+          class="justify-self-end mb-4 mt-4 disabled:cursor-no-drop"
           :disabled="countLength > 10 || tweet==''"
         ></Button></div>
        
       </form>
       
     </div>
-  </div>
+  
 </template>
 
 <script>

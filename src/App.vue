@@ -114,9 +114,9 @@ export default {
   <Navbar :poto="user.photo" />
   <div class="flex justify-center mt-8">
     <div
-      class="w-1/2 border border-slate-400 rounded-xl h-48 flex justify-center p-4"
+    class="w-1/2 rounded-lg mt-4 px-4 bg-slate-100 border justify-self-center"
     >
-      <FormTweet class="w-full" @tweets="handleTweet" />
+      <FormTweet @tweets="handleTweet" />
     </div>
   </div>
 
