@@ -134,6 +134,7 @@ export default {
     },
 
     deleteFeed(index) {
+      // console.log(index)
       this.$emit("delete", index);
     },
 

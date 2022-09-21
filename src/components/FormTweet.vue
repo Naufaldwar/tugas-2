@@ -1,29 +1,38 @@
 <template>
-  <form @submit.prevent="pushTweet()" ref="form" class="grid">
-    <textarea
-      name=""
-      v-model="tweet"
-      id=""
-      rows="3"
-      placeholder="Wite Something"
-      class="border border-slate-400 p-3 rounded-md"
-      autofocus
-    ></textarea>
-    <div class="grid">
-      <p>{{ tweet.length }}/10</p>
-      <Button
-        class="justify-self-end mb-8 disabled:cursor-no-drop"
-        :disabled="countLength > 10 || tweet == ''"
-      ></Button>
+  <div class="flex justify-center">
+    <div
+      class="w-1/2 items-center border border-slate-400 rounded-xl h-48 grid justify-center"
+    >
+      <form @submit.prevent="pushTweet()" ref="form" class="grid">
+        <textarea
+          name=""
+          v-model="tweet"
+          id=""
+          cols="67"
+          rows="3"
+          placeholder="Wite Something"
+          class="border border-slate-400 p-3 mt-5 rounded-md"
+          autofocus
+        ></textarea>
+        <div class=" grid grid-cols-2"><p>{{ tweet.length }}/10</p> <Button
+          class="justify-self-end mb-8 mt-4 disabled:cursor-no-drop"
+          :disabled="countLength > 10 || tweet==''"
+        ></Button></div>
+       
+      </form>
+      
     </div>
-  </form>
+  </div>
 </template>
 
 <script>
+import Button from "./Button.vue";
 export default {
   emits: ["tweets"],
-  props: { number: Number },
-
+  props:{tweetpost:Array},
+  components: {
+    Button,
+  },
   data() {
     return {
       tweet: "",
@@ -37,10 +46,10 @@ export default {
   },
   methods: {
     pushTweet() {
-      console.log(this.number);
-      this.$emit("tweets", this.tweet, this.number);
-      this.$refs.form.reset();
-      this.tweet = "";
+      this.$emit("tweets", this.tweet);
+      this.$refs.form.reset()
+      this.tweet=""
+      
     },
   },
 };

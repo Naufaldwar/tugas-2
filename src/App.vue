@@ -1,15 +1,5 @@
 <script>
-import Navbar from "./components/Navbar.vue";
-import FormTweet from "./components/FormTweet.vue";
-import FeedCard from "./components/FeedCard.vue";
-
 export default {
-  components: {
-    Navbar,
-    FormTweet,
-    FeedCard,
-  },
-
   data() {
     return {
       user: {
@@ -99,8 +89,8 @@ export default {
     },
 
     handleDelete(index) {
+      console.log(index);
       this.feeds.splice(index, 1);
-      console.log(index)
     },
 
     handleComment(tweet, number) {
@@ -110,6 +100,7 @@ export default {
         usernick: this.user.nickname,
         tweet: tweet,
         heart: "false",
+        delete: true,
         like: 0,
         retweet: 0,
         isSmall: true,
