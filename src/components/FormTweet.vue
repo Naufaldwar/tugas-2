@@ -13,16 +13,26 @@
       <div class="grid grid-cols-2">
         <p>{{ tweet.length }}/10</p>
         <div class="flex justify-self-end gap-2">
-          <div
+          <!-- <div
             class="bg-red-500 mb-4 mt-4 py-2 px-4 rounded-md text-white font-medium hover:cursor-pointer" v-if="isCancel" @click="show"
           >
           <p>Cancel</p>
             
-          </div>
+          </div> -->
           <Button
-            class=" mb-4 mt-4 disabled:cursor-no-drop"
+            type="button"
+            v-if="isCancel"
+            @click="show"
+            :isCancel="true"
+            class="my-4"
+          ></Button>
+          <Button
+            v-if="countLength > 10 || tweet == ''"
+            :isDisable="true"
+            class="my-4 disabled:cursor-no-drop"
             :disabled="countLength > 10 || tweet == ''"
           ></Button>
+          <Button v-else class="my-4" :isPrimary="true"></Button>
         </div>
       </div>
     </form>
@@ -32,8 +42,8 @@
 <script>
 import Button from "./Button.vue";
 export default {
-  emits: ["tweets","show"],
-  props: { tweetpost: Array, number: Number , isCancel:Boolean},
+  emits: ["tweets", "show"],
+  props: { tweetpost: Array, number: Number, isCancel: Boolean },
   components: {
     Button,
   },
@@ -57,10 +67,10 @@ export default {
       this.$refs.form.reset();
       this.tweet = "";
     },
-    show(){
-      console.log(this.isCancel)
-      this.$emit("show",this.isCancel)
-    }
+    show() {
+      console.log(this.isCancel);
+      this.$emit("show", this.isCancel);
+    },
   },
 };
 </script>

@@ -51,14 +51,14 @@
         :number="this.index"
       />
     </div>
-    <div v-if="hasChildren" class="flex flex-col-reverse">
+    <div v-if="hasChildren">
       <FeedCard
         v-for="(comment, index) in feed.comments"
         :feed="comment"
         :index="index"
         @delete="handleDeleteComment(this.index, index)"
         :key="comment"
-        class="px-4 py-2"
+        
       />
     </div>
   </div>
