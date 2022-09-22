@@ -1,5 +1,9 @@
 <script>
+import Navbar from './components/Navbar.vue'
 export default {
+  components:{
+    Navbar
+  },
   data() {
     return {
       user: {
@@ -67,9 +71,7 @@ export default {
 
   provide() {
     return {
-      nama: this.user.nama,
-      photos: this.user.photo,
-      nick: this.user.nickname,
+      user:this.user
     };
   },
   methods: {
