@@ -20,10 +20,10 @@ export default {
             "Géritole de maudite marde de saint-cimonaque de cul de purée de charrue de cossin de saint-ciboire de baptême de gériboire de viarge de mosus de tabarouette.",
           photo:
             "https://assets.promediateknologi.com/crop/0x0:0x0/x/photo/2022/07/12/3455922448.jpg",
-          heart: "false",
+          heart: true,
           like: 10,
           retweet: 50,
-          reply: "false",
+          reply: false,
           comments: [
             {
               user: "Dedi Mumz si imoet",
@@ -32,7 +32,7 @@ export default {
                 "Sapristi de doux Jésus de cibouleau de colon de cochonnerie de sainte-viarge de purée de taboire de câlique de mosus de calvinouche d'étole.",
               photo:
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlbfBgZmo3yMzBOEtGyS6UqD1PxZsVgubLzg&usqp=CAU",
-              heart: "false",
+              heart: true,
               like: 15,
               retweet: 1220,
               isSmall: true,
@@ -46,10 +46,10 @@ export default {
             "Sapristi de doux Jésus de cibouleau de colon de cochonnerie de sainte-viarge de purée de taboire de câlique de mosus de calvinouche d'étole.",
           photo:
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlbfBgZmo3yMzBOEtGyS6UqD1PxZsVgubLzg&usqp=CAU",
-          heart: "false",
+          heart: true,
           like: 15,
           retweet: 1220,
-          reply: "false",
+          reply: false,
           comments: [
             {
               user: "Bayu Tri Nugroho",
@@ -57,7 +57,7 @@ export default {
               tweet: "ngomong opo seh cok..",
               photo:
                 "https://assets.promediateknologi.com/crop/0x0:0x0/x/photo/2022/07/12/3455922448.jpg",
-              heart: "false",
+              heart: true,
               like: 10,
               retweet: 50,
               isSmall: true,
@@ -68,9 +68,10 @@ export default {
               tweet: "Kepo yaaa.. :v",
               photo:
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlbfBgZmo3yMzBOEtGyS6UqD1PxZsVgubLzg&usqp=CAU",
-              heart: "false",
+              heart: true,
               like: 15,
               retweet: 1220,
+              isSmall: true,
             },
           ],
         },
@@ -90,21 +91,19 @@ export default {
         user: this.user.nama,
         usernick: this.user.nickname,
         tweet: tweet,
-        heart: "false",
+        heart: true,
         like: 0,
         retweet: 0,
         delete: true,
-        reply: "false",
+        reply: false,
         comments: [],
       });
     },
 
     handleDelete(index) {
-      console.log(index);
       this.feeds.splice(index, 1);
     },
     handleDeleteComment(number, index) {
-      console.log(this.feeds[index]);
       this.feeds[number].comments.splice(index, 1);
     },
 
@@ -114,7 +113,7 @@ export default {
         user: this.user.nama,
         usernick: this.user.nickname,
         tweet: tweet,
-        heart: "false",
+        heart: true,
         delete: true,
         like: 0,
         retweet: 0,

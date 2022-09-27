@@ -17,50 +17,45 @@
         <div class="mt-3 flex">
           <div class="flex hover:cursor-pointer" @click="toggle">
             <div>
-              <Icon :show_heart="feed.heart" :isHeart="true"/>
+              <Icon :show_heart="feed.heart" :isHeart="true" />
             </div>
           </div>
           <p class="ml-1 text-slate-800">{{ feed.like }}</p>
           <div class="mt-[2px] ml-2 h-7" @click="retweet">
-            <Icon :isRetweet="true"/>
+            <Icon :isRetweet="true" />
           </div>
           <p class="ml-1 text-slate-800">{{ feed.retweet }}</p>
           <div class="ml-2" v-if="feed.delete" @click="deleteFeed(index)">
-            <Icon :isDelete="true"/>
+            <Icon :isDelete="true" />
           </div>
         </div>
       </div>
     </div>
-
     <button
       class="w-full h-8 shadow-md bg-slate-100 flex justify-start text-xs mt-4 pl-2 text-slate-500 rounded-md"
-      v-show="feed.reply"
+      v-show="feed.reply == false"
       @click="toggleReply"
     >
       <span class="self-center">Reply</span>
     </button>
 
-    <div
-      v-show="feed.reply == false"
+    <FormTweet
+      v-show="feed.reply == true"
+      @tweets="handleComment"
+      @show="toggleReply"
+      @blur="handleBlur"
+      :isCancel="true"
+      :number="this.index"
       class="bg-slate-100 rounded-lg p-4 mt-4 shadow-md w-full justify-self-center"
-    >
-      <FormTweet
-        @tweets="handleComment"
-        @show="toggleReply"
-        :isCancel="true"
-        :number="this.index"
-      />
-    </div>
-    <div v-if="hasChildren">
-      <FeedCard
-        v-for="(comment, index) in feed.comments"
-        :feed="comment"
-        :index="index"
-        @delete="handleDeleteComment(this.index, index)"
-        :key="comment"
-        
-      />
-    </div>
+    />
+    <FeedCard
+      v-for="(comment, index) in feed.comments"
+      :feed="comment"
+      :index="index"
+      @delete="handleDeleteComment(this.index, index)"
+      :key="comment"
+    />
+    <!-- <div v-if="hasChildren" class="flex flex-col-reverse"></div> -->
   </div>
 </template>
 <script>
@@ -103,8 +98,12 @@ export default {
     },
 
     handleDeleteComment(number, index) {
-      console.log(index);
       this.$emit("deleteComment", number, index);
+    },
+    handleBlur(tweet) {
+      if (tweet.length == 0) {
+        this.toggleReply();
+      }
     },
   },
 };

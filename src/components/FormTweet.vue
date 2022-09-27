@@ -1,14 +1,21 @@
 <template>
   <div class="flex justify-center">
-    <form @submit.prevent="pushTweet()" ref="form" class="grid w-full">
+    <form
+      @submit.prevent="pushTweet()"
+      @click="show == false"
+      ref="form"
+      class="grid w-full"
+    >
       <textarea
+        @blur="blurEvent()"
         name=""
         v-model="tweet"
         id=""
         rows="3"
-        placeholder="Wite Something"
+        placeholder="Write Something"
         class="border border-slate-400 p-3 mt-5 rounded-md"
         ref="input"
+        autofocus
       ></textarea>
       <div class="grid grid-cols-2">
         <p>{{ tweet.length }}/10</p>
@@ -41,12 +48,14 @@
 
 <script>
 import Button from "./Button.vue";
+import { nextTick } from "vue";
 export default {
-  emits: ["tweets", "show"],
+  emits: ["tweets", "show", "blur"],
   props: { tweetpost: Array, number: Number, isCancel: Boolean },
   components: {
     Button,
   },
+
   data() {
     return {
       tweet: "",
@@ -56,6 +65,10 @@ export default {
   mounted() {
     this.$refs.input.focus();
   },
+  updated() {
+    this.$refs.input.focus();
+  },
+
   computed: {
     countLength() {
       return this.tweet.length;
@@ -65,11 +78,13 @@ export default {
     pushTweet() {
       this.$emit("tweets", this.tweet, this.number);
       this.$refs.form.reset();
-      this.tweet = "";
+      return (this.tweet = "");
     },
     show() {
-      console.log(this.isCancel);
       this.$emit("show", this.isCancel);
+    },
+    blurEvent() {
+      this.$emit("blur", this.tweet);
     },
   },
 };
